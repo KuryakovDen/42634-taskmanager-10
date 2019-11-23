@@ -457,3 +457,12 @@ const taskListElement = () => {
   return document.querySelector(`.board__tasks`);
 };
 
+render(taskListElement(), createFormEditTask());
+
+new Array(TASK_COUNT).fill(``).forEach(() => render(taskListElement(), createTaskTemplate()));
+
+const boardElement = () => {
+  return siteMainElement().querySelector(`.board`);
+};
+
+render(boardElement(), createLoadButton());
