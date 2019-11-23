@@ -433,12 +433,12 @@ const createFormEditTask = () => {
   </article>`);
 };
 
-const siteMainElement = () => {
+const getMainElement = () => {
   return document.querySelector(`.main`);
 };
 
-const siteHeaderElement = () => {
-  return siteMainElement().querySelector(`.main__control`);
+const getHeaderElement = () => {
+  return getMainElement().querySelector(`.main__control`);
 };
 
 const createLoadButton = () => {
@@ -449,20 +449,20 @@ const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
-render(siteHeaderElement(), createSiteMenuTemplate());
-render(siteMainElement(), createFilterTemplate());
-render(siteMainElement(), createBoardTemplate());
+render(getHeaderElement(), createSiteMenuTemplate());
+render(getMainElement(), createFilterTemplate());
+render(getMainElement(), createBoardTemplate());
 
-const taskListElement = () => {
+const getTaskListElement = () => {
   return document.querySelector(`.board__tasks`);
 };
 
-render(taskListElement(), createFormEditTask());
+render(getTaskListElement(), createFormEditTask());
 
-new Array(TASK_COUNT).fill(``).forEach(() => render(taskListElement(), createTaskTemplate()));
+new Array(TASK_COUNT).fill(``).forEach(() => render(getTaskListElement(), createTaskTemplate()));
 
-const boardElement = () => {
-  return siteMainElement().querySelector(`.board`);
+const getBoardElement = () => {
+  return getMainElement().querySelector(`.board`);
 };
 
-render(boardElement(), createLoadButton());
+render(getBoardElement(), createLoadButton());
