@@ -458,9 +458,7 @@ const getTaskListElement = () => {
 
 render(getTaskListElement(), createFormEditTask());
 
-new Array(TASK_COUNT)
-  .fill(``)
-  .forEach(() => render(getTaskListElement(), createTaskTemplate()));
+new Array(TASK_COUNT).fill(``).forEach(() => render(getTaskListElement(), createTaskTemplate()));
 
 const getBoardElement = () => {
   return getMainElement().querySelector(`.board`);
