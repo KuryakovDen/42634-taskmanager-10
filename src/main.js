@@ -46,8 +46,7 @@ const createFilterTemplate = () => {
         name="filter"
         disabled
       />
-      <label for="filter__overdue" class="filter__label"
-        >Overdue <span class="filter__overdue-count">0</span></label>
+      <label for="filter__overdue" class="filter__label">Overdue <span class="filter__overdue-count">0</span></label>
       <input
         type="radio"
         id="filter__today"
@@ -459,7 +458,9 @@ const getTaskListElement = () => {
 
 render(getTaskListElement(), createFormEditTask());
 
-new Array(TASK_COUNT).fill(``).forEach(() => render(getTaskListElement(), createTaskTemplate()));
+new Array(TASK_COUNT)
+  .fill(``)
+  .forEach(() => render(getTaskListElement(), createTaskTemplate()));
 
 const getBoardElement = () => {
   return getMainElement().querySelector(`.board`);
