@@ -1,4 +1,9 @@
-const TASK_COUNT = 3;
+import {TASK_COUNT, createTaskTemplate} from './components/task.js';
+import {createFormEditTask} from './components/task-edit.js';
+import {createBoardTemplate} from './components/board.js';
+import {createFilterTemplate} from './components/filter.js';
+import {createLoadButton} from './components/load-button.js';
+import {createSiteMenuTemplate} from './components/menu.js';
 
 const getMainElement = () => {
   return document.querySelector(`.main`);

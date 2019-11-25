@@ -1,3 +1,5 @@
+export const TASK_COUNT = 3;
+
 export const createTaskTemplate = () => {
   return (
     `<article class="card card--black">
