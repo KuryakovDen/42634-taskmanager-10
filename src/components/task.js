@@ -12,9 +12,7 @@ export const createTaskTemplate = () => {
             <button type="button" class="card__btn card__btn--archive">
               archive
             </button>
-            <button
-              type="button"
-              class="card__btn card__btn--favorites card__btn--disabled">
+            <button type="button" class="card__btn card__btn--favorites card__btn--disabled">
               favorites
             </button>
           </div>
@@ -43,21 +41,21 @@ export const createTaskTemplate = () => {
               <div class="card__hashtag">
                 <div class="card__hashtag-list">
                   <span class="card__hashtag-inner">
-                    <span class="card__hashtag-name">
-                      #todo
-                    </span>
+                        <span class="card__hashtag-name">
+                          #todo
+                        </span>
                   </span>
 
                   <span class="card__hashtag-inner">
-                    <span class="card__hashtag-name">
-                      #personal
-                    </span>
+                        <span class="card__hashtag-name">
+                          #personal
+                        </span>
                   </span>
 
                   <span class="card__hashtag-inner">
-                    <span class="card__hashtag-name">
-                      #important
-                    </span>
+                        <span class="card__hashtag-name">
+                          #important
+                        </span>
                   </span>
                 </div>
               </div>
@@ -65,5 +63,6 @@ export const createTaskTemplate = () => {
           </div>
         </div>
       </div>
-    </article>`);
+    </article>`
+  );
 };
