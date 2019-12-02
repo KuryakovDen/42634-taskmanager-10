@@ -1,3 +1,9 @@
+const filterNames = [`all`, `overdue`, `today`, `favorites`, `repeating`, `archive`];
+
+export const generateFilters = () => {
+
+};
+
 export const createFilterTemplate = () => {
   return (
     `<section class="main__filter filter container">

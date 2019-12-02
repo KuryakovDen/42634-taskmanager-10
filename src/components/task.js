@@ -1,4 +1,42 @@
+import {generateRandomElement, colorCard} from './util.js';
+
+const taskDescription = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
+const tags = [`homework`, `theory`, `practice`, `intensive`, `keks`];
+
 export const TASK_COUNT = 3;
+
+const repeatingDays = {
+  'mo': false,
+  'tu': false,
+  'we': false,
+  'th': false,
+  'fr': false,
+  'sa': false,
+  'su': false
+};
+
+const generateRepeatingDays = () => {
+  return Object.assign({}, repeatingDays, {
+    'mo': true
+  });
+};
+
+/* const generateTags = (tagsCount) => {
+  return generateRandomElement(tags);
+}; */
+
+const generateTask = () => {
+  return {
+    description: generateRandomElement(taskDescription),
+    dueDate: generateRepeatingDays(),
+    tags: generateRandomElement(tags),
+    color: generateRandomElement(colorCard),
+    isFavorite: true,
+    isArchive: false
+  };
+};
+
+// console.log(generateTask());
 
 export const createTaskTemplate = () => {
   return (
