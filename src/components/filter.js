@@ -1,4 +1,4 @@
-const filterNames = [`all`, `overdue`, `today`, `favorites`, `repeating`, `archive`];
+// const filterNames = [`all`, `overdue`, `today`, `favorites`, `repeating`, `archive`];
 
 export const generateFilters = () => {
 

@@ -21,22 +21,24 @@ const generateRepeatingDays = () => {
   });
 };
 
-/* const generateTags = (tagsCount) => {
-  return generateRandomElement(tags);
-}; */
+const generateTags = (tagsArray) => {
+  return tagsArray
+  .filter(() => Math.random() > 0.5)
+  .slice(0, 3);
+};
 
 const generateTask = () => {
   return {
     description: generateRandomElement(taskDescription),
     dueDate: generateRepeatingDays(),
-    tags: generateRandomElement(tags),
+    tags: new Set(generateTags(tags)),
     color: generateRandomElement(colorCard),
     isFavorite: true,
     isArchive: false
   };
 };
 
-// console.log(generateTask());
+console.log(generateTask());
 
 export const createTaskTemplate = () => {
   return (
