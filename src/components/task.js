@@ -1,11 +1,12 @@
-import {generateRandomElement, colorCard} from './util.js';
+import {generateRandomElement, generateRandomRangeNumber} from './util.js';
 
 const taskDescription = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
 const tags = [`homework`, `theory`, `practice`, `intensive`, `keks`];
+const colorCard = [`black`, `yellow`, `pink`, `blue`, `green`];
 
 export const TASK_COUNT = 3;
 
-const repeatingDays = {
+const defaultRepeatingDays = {
   'mo': false,
   'tu': false,
   'we': false,
@@ -16,9 +17,19 @@ const repeatingDays = {
 };
 
 const generateRepeatingDays = () => {
-  return Object.assign({}, repeatingDays, {
+  return Object.assign({}, defaultRepeatingDays, {
     'mo': true
   });
+};
+
+const generateRandomDate = () => {
+  let taskDate = new Date();
+  const sign = Math.random() > 0.5 ? 1 : -1;
+  const differenceDate = sign * generateRandomRangeNumber(0, 7);
+
+  taskDate.setDate(taskDate.getDate() + differenceDate);
+
+  return taskDate;
 };
 
 const generateTags = (tagsArray) => {
@@ -28,13 +39,16 @@ const generateTags = (tagsArray) => {
 };
 
 const generateTask = () => {
+  const dueDate = Math.random > 0.5 ? null : generateRepeatingDays();
+
   return {
     description: generateRandomElement(taskDescription),
-    dueDate: generateRepeatingDays(),
+    dueDate: generateRandomDate(),
+    defaultRepeatingDays: dueDate ? defaultRepeatingDays : generateRepeatingDays(),
     tags: new Set(generateTags(tags)),
     color: generateRandomElement(colorCard),
-    isFavorite: true,
-    isArchive: false
+    isFavorite: Math.random() > 0.5,
+    isArchive: Math.random() > 0.5
   };
 };
 
