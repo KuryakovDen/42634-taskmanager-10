@@ -1,10 +1,25 @@
 import {generateRandomElement, generateRandomRangeNumber} from './util.js';
 
+export const TASK_COUNT = 3;
+
 const taskDescription = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
 const tags = [`homework`, `theory`, `practice`, `intensive`, `keks`];
 const colorCard = [`black`, `yellow`, `pink`, `blue`, `green`];
 
-export const TASK_COUNT = 3;
+const monthDays = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`
+];
 
 const defaultRepeatingDays = {
   'mo': false,
