@@ -1,9 +1,4 @@
-import {
-  generateRandomElement,
-  generateRandomRangeNumber,
-  convertTimeFormat,
-  convertDateFormat
-} from '../util.js';
+import {convertTimeFormat} from '../util.js';
 
 import {monthDays} from '../const.js';
 
@@ -20,7 +15,7 @@ const createHashtagsMarkup = (hashtags) => {
 };
 
 export const createTaskTemplate = (task) => {
-  const {description, tags, dueDate, color, repeatingDays} = task;
+  const {description, tags, dueDate, color/* ,repeatingDays*/} = task;
 
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;

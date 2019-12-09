@@ -7,9 +7,11 @@ import {createTaskTemplate} from './components/task.js';
 import {generateTasks} from './mock/task.js';
 import {generateFilters} from './mock/filter.js';
 
-const TASK_COUNT = 17;
-const START_SHOWING_TASKS = 9;
+const TASK_COUNT = 10;
+const START_SHOWING_TASKS = 8;
 const BUTTON_SHOWING_TASKS = 8;
+
+const tasks = generateTasks(TASK_COUNT);
 
 const getMainElement = () => {
   return document.querySelector(`.main`);
@@ -36,10 +38,6 @@ const getTaskListElement = () => {
 
 render(getTaskListElement(), createFormEditTask());
 
-const tasks = generateTasks(TASK_COUNT);
-
-// new Array(TASK_COUNT).fill(``).forEach(() => render(getTaskListElement(), createTaskTemplate(task)));
-
 tasks.slice(0, START_SHOWING_TASKS).forEach((el, i) => render(getTaskListElement(), createTaskTemplate(tasks[i])));
 
 const getBoardElement = () => {
@@ -60,5 +58,5 @@ getLoadMoreButton().addEventListener(`click`, () => {
 
   if (currentTasks >= tasks.length) {
     getLoadMoreButton().classList.add(`visually-hidden`);
-  };
+  }
 });

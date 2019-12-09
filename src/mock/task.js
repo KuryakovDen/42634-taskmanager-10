@@ -38,5 +38,5 @@ export const generateTask = () => {
 };
 
 export const generateTasks = (tasksCount) => {
-  return new Array (tasksCount).fill(``).map(generateTask);
+  return new Array(tasksCount).fill(``).map(generateTask);
 };
