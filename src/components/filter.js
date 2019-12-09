@@ -1,3 +1,5 @@
+import {filterNames} from '../mock/filter.js';
+
 const createFilterMarkup = (filter, isChecked) => {
   const {name, count} = filter;
 
@@ -16,10 +18,8 @@ const createFilterMarkup = (filter, isChecked) => {
 };
 
 export const createFilterTemplate = (filtersArray) => {
-  filtersArray = [`all`, `overdue`, `today`, `favorites`, `repeating`, `archive`];
-  const filtersMarkup = filtersArray.map((it, i) => {
-    createFilterMarkup(it, i === 0);
-  });
+
+  const filtersMarkup = filtersArray.map((it, i) => createFilterMarkup(it, i === 0)).join(`\n`);
 
   return (
     `<section class="main__filter filter container">
