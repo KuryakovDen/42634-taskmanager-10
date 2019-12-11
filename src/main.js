@@ -51,7 +51,7 @@ getLoadMoreButton().addEventListener(`click`, () => {
   let currentTasks = START_SHOWING_TASKS;
   currentTasks = START_SHOWING_TASKS + BUTTON_SHOWING_TASKS;
 
-  tasks.slice(START_SHOWING_TASKS /* - 1*/, currentTasks).forEach((el, i) => render(getTaskListElement(), createTaskTemplate(tasks[i])));
+  tasks.slice(START_SHOWING_TASKS, currentTasks).forEach((el, i) => render(getTaskListElement(), createTaskTemplate(tasks[i])));
 
   if (currentTasks >= tasks.length) {
     getLoadMoreButton().classList.add(`visually-hidden`);
