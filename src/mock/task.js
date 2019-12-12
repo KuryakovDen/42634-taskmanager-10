@@ -1,4 +1,4 @@
-import {defaultRepeatingDays, taskDescription, tags, colorCard} from '../const.js';
+import {defaultRepeatingDays, descriptionTasks, tags, cardColors} from '../const.js';
 import {generateRandomElement, generateRandomRangeNumber} from '../util.js';
 
 const generateRepeatingDays = () => {
@@ -9,6 +9,7 @@ const generateRepeatingDays = () => {
 
 const generateRandomDate = () => {
   let taskDate = new Date();
+
   const sign = Math.random() > 0.5 ? 1 : -1;
   const differenceDate = sign * generateRandomRangeNumber(0, 7);
 
@@ -17,21 +18,19 @@ const generateRandomDate = () => {
   return taskDate;
 };
 
-const generateTags = (tagsArray) => {
-  return tagsArray
-  .filter(() => Math.random() > 0.5)
-  .slice(0, 3);
+const generateTags = (someTags) => {
+  return someTags.filter(() => Math.random() > 0.5).slice(0, 3);
 };
 
 export const generateTask = () => {
   const dueDate = Math.random > 0.5 ? null : generateRepeatingDays();
 
   return {
-    description: generateRandomElement(taskDescription),
+    description: generateRandomElement(descriptionTasks),
     dueDate: generateRandomDate(),
     defaultRepeatingDays: dueDate ? defaultRepeatingDays : generateRepeatingDays(),
     tags: new Set(generateTags(tags)),
-    color: generateRandomElement(colorCard),
+    color: generateRandomElement(cardColors),
     isFavorite: Math.random() > 0.5,
     isArchive: Math.random() > 0.5
   };

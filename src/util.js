@@ -1,6 +1,8 @@
-export const generateRandomElement = (array) => {
-  let index = Math.floor(Math.random() * array.length);
-  return array[index];
+const timeFormatVariable = 10;
+
+export const generateRandomElement = (elements) => {
+  let index = Math.floor(Math.random() * elements.length);
+  return elements[index];
 };
 
 export const generateRandomRangeNumber = (min, max) => {
@@ -8,7 +10,7 @@ export const generateRandomRangeNumber = (min, max) => {
 };
 
 export const convertTimeFormat = (value) => {
-  return value < 10 ? `0${value}` : String(value);
+  return value < timeFormatVariable ? `0${value}` : String(value);
 };
 
 export const convertDateFormat = (currentDate) => {

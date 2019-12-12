@@ -16,12 +16,11 @@ const createFilterMarkup = (filter, isChecked) => {
 };
 
 export const createFilterTemplate = (filtersArray) => {
-
-  const filtersMarkup = filtersArray.map((it) => createFilterMarkup(it)).join(`\n`);
+  const getFiltersMarkup = filtersArray.map((it) => createFilterMarkup(it)).join(`\n`);
 
   return (
     `<section class="main__filter filter container">
-      ${filtersMarkup}
+      ${getFiltersMarkup}
     </section>`
   );
 };

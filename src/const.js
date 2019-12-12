@@ -1,6 +1,6 @@
-export const taskDescription = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
+export const descriptionTasks = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
 export const tags = [`homework`, `theory`, `practice`, `intensive`, `keks`];
-export const colorCard = [`black`, `yellow`, `pink`, `blue`, `green`];
+export const cardColors = [`black`, `yellow`, `pink`, `blue`, `green`];
 
 export const monthDays = [
   `January`,

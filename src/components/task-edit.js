@@ -1,5 +1,5 @@
 import {convertTimeFormat} from '../util.js';
-import {monthDays, colorCard} from '../const.js';
+import {monthDays, cardColors} from '../const.js';
 import {generateTasks} from '../mock/task.js';
 
 export const TASK_COUNT = 10;
@@ -25,26 +25,6 @@ const createColorMarkup = (colors, currentColor) => {
   }).join(`\n`);
 };
 
-/* const createRepeatingDaysMarkup = (days, repeatingDays) => {
-  return Array.from(days).map((day) => {
-    const isChecked = repeatingDays[day];
-
-    return (
-      `<input class="visually-hidden card__repeat-day-input"
-        type="checkbox"
-        id="repeat-${day}-4"
-        name="repeat"
-        value="${day}"
-        ${isChecked ? `checked` : ``}
-      />
-      <label class="card__repeat-day"
-        for="repeat-${day}-4">
-        ${day}
-      </label>`
-    );
-  }).join(`\n`);
-};*/
-
 const createHashtagsMarkup = (tagsArray) => {
 
   tagsArray = editTask[0].tags;
@@ -69,7 +49,7 @@ const createHashtagsMarkup = (tagsArray) => {
 };
 
 export const createFormEditTask = (task) => {
-  const {tags, dueDate, color/* , repeatingDays*/} = task;
+  const {tags, dueDate, color} = task;
 
   const description = editTask[0].description;
 
@@ -81,13 +61,8 @@ export const createFormEditTask = (task) => {
   const date = isDateShowing ? `${dueDate.getDate()} ${monthDays[dueDate.getMonth()]}` : ``;
   const time = isDateShowing ? convertTimeFormat(dueDate) : ``;
 
-  // const isRepeatingTask = Object.values(repeatingDays).some(Boolean);
-  // const repeatClass = isRepeatingTask ? `card--repeat` : ``;
-
   const tagsMarkup = createHashtagsMarkup(tags);
-  const colorsMarkup = createColorMarkup(colorCard, color);
-
-  // const repeatingDaysMarkup = createRepeatingDaysMarkup(defaultRepeatingDays, repeatingDays);
+  const colorsMarkup = createColorMarkup(cardColors, color);
 
   return (
     `<article class="card card--edit card--${color} ${deadlineClass}">

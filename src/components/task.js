@@ -1,5 +1,4 @@
 import {convertTimeFormat} from '../util.js';
-
 import {monthDays} from '../const.js';
 
 const createHashtagsMarkup = (hashtags) => {
@@ -15,7 +14,7 @@ const createHashtagsMarkup = (hashtags) => {
 };
 
 export const createTaskTemplate = (task) => {
-  const {description, tags, dueDate, color/* , repeatingDays*/} = task;
+  const {description, tags, dueDate, color} = task;
 
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
@@ -24,9 +23,6 @@ export const createTaskTemplate = (task) => {
   const time = isDateShowing ? convertTimeFormat(dueDate) : ``;
 
   const hashtags = createHashtagsMarkup(tags);
-
-  // const isRepeatingTask = Object.values(repeatingDays).some(Boolean);
-  // const repeatClass = isRepeatingTask ? `card--repeat` : ``;
 
   const deadlineClass = isExpired ? `card--deadline` : ``;
 
