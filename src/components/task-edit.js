@@ -1,4 +1,4 @@
-import {convertTimeFormat} from '../utils.js';
+import {convertTimeFormat, getExpiredStatus} from '../utils.js';
 import {monthDays, cardColors} from '../const.js';
 import {generateTasks} from '../mock/task.js';
 
@@ -53,8 +53,7 @@ const createFormEditTask = (task) => {
 
   const description = editTask[0].description;
 
-  const isExpired = dueDate instanceof Date && dueDate < Date.now();
-  const deadlineClass = isExpired ? `card--deadline` : ``;
+  const deadlineClass = getExpiredStatus() ? `card--deadline` : ``;
 
   const isDateShowing = !!dueDate;
 

@@ -13,7 +13,7 @@ const convertTimeFormat = (value) => {
   return value < timeFormat ? `0${value}` : String(value);
 };
 
-export const convertDateFormat = (currentDate) => {
+const convertDateFormat = (currentDate) => {
   const date = new Date(currentDate);
   const hours = convertTimeFormat(date.getHours() % 12);
   const minutes = convertTimeFormat(date.getMinutes());
@@ -23,4 +23,7 @@ export const convertDateFormat = (currentDate) => {
   return `${hours}:${minutes} ${interval}`;
 };
 
-export {generateRandomElement, generateRandomRangeNumber, convertTimeFormat};
+const getExpiredStatus = (dueDate) => dueDate instanceof Date && dueDate < Date.now();
+
+
+export {generateRandomElement, generateRandomRangeNumber, convertTimeFormat, convertDateFormat, getExpiredStatus};

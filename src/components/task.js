@@ -1,4 +1,4 @@
-import {convertTimeFormat} from '../utils.js';
+import {convertTimeFormat, getExpiredStatus} from '../utils.js';
 import {monthDays} from '../const.js';
 
 const createHashtagsMarkup = (hashtags) => {
@@ -16,7 +16,6 @@ const createHashtagsMarkup = (hashtags) => {
 const createTaskTemplate = (task) => {
   const {description, tags, dueDate, color} = task;
 
-  const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
 
   const date = isDateShowing ? `${dueDate.getDate()} ${monthDays[dueDate.getMonth()]}` : ``;
@@ -24,7 +23,7 @@ const createTaskTemplate = (task) => {
 
   const hashtags = createHashtagsMarkup(tags);
 
-  const deadlineClass = isExpired ? `card--deadline` : ``;
+  const deadlineClass = getExpiredStatus() ? `card--deadline` : ``;
 
   return (
     `<article class="card card--${color} ${deadlineClass}">

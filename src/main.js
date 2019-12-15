@@ -39,8 +39,7 @@ const getLoadMoreButton = () => {
 render(boardElement, createLoadButton());
 
 getLoadMoreButton().addEventListener(`click`, () => {
-  let currentTasks = START_SHOWING_TASKS;
-  currentTasks = START_SHOWING_TASKS + BUTTON_SHOWING_TASKS;
+  let currentTasks = START_SHOWING_TASKS + BUTTON_SHOWING_TASKS;
 
   tasks.slice(START_SHOWING_TASKS, currentTasks).forEach((el, i) => render(taskListElement, createTaskTemplate(tasks[i])));
 
