@@ -1,9 +1,9 @@
-import {convertTimeFormat} from '../util.js';
+import {convertTimeFormat} from '../utils.js';
 import {monthDays, cardColors} from '../const.js';
 import {generateTasks} from '../mock/task.js';
 
-export const TASK_COUNT = 10;
-export const tasks = generateTasks(TASK_COUNT);
+const TASK_COUNT = 10;
+const tasks = generateTasks(TASK_COUNT);
 
 const editTask = tasks.slice(0, 1);
 
@@ -25,11 +25,11 @@ const createColorMarkup = (colors, currentColor) => {
   }).join(`\n`);
 };
 
-const createHashtagsMarkup = (tagsArray) => {
+const createHashtagsMarkup = (someTags) => {
 
-  tagsArray = editTask[0].tags;
+  someTags = editTask[0].tags;
 
-  return Array.from(tagsArray).map((tag) => {
+  return Array.from(someTags).map((tag) => {
     return (
       `<span class="card__hashtag-inner">
         <input type="hidden"
@@ -48,7 +48,7 @@ const createHashtagsMarkup = (tagsArray) => {
   }).join(`\n`);
 };
 
-export const createFormEditTask = (task) => {
+const createFormEditTask = (task) => {
   const {tags, dueDate, color} = task;
 
   const description = editTask[0].description;
@@ -84,7 +84,7 @@ export const createFormEditTask = (task) => {
             <div class="card__details">
               <div class="card__dates">
                 <button class="card__date-deadline-toggle" type="button">
-                  date: <span class="card__date-status">${isDateShowing ? `yes` : `no`}</span>
+                  date: &nbsp; <span class="card__date-status">${isDateShowing ? `yes` : `no`}</span>
                 </button>
 
                 ${isDateShowing ? `
@@ -95,7 +95,7 @@ export const createFormEditTask = (task) => {
                 </fieldset>` : ``}
 
                 <button class="card__repeat-toggle" type="button">
-                  repeat:<span class="card__repeat-status">no</span>
+                  repeat: &nbsp; <span class="card__repeat-status">no</span>
                 </button>
 
               </div>
@@ -128,3 +128,5 @@ export const createFormEditTask = (task) => {
     </article>`
   );
 };
+
+export {TASK_COUNT, tasks, createFormEditTask};

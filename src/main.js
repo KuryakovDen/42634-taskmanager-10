@@ -9,40 +9,40 @@ import {generateFilters} from './mock/filter.js';
 const START_SHOWING_TASKS = 8;
 const BUTTON_SHOWING_TASKS = 8;
 
-const getMainElement = document.querySelector(`.main`);
+const mainElement = document.querySelector(`.main`);
 
-const getHeaderElement = getMainElement.querySelector(`.main__control`);
+const headerElement = mainElement.querySelector(`.main__control`);
 
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
-render(getHeaderElement, createSiteMenuTemplate());
+render(headerElement, createSiteMenuTemplate());
 
 const filters = generateFilters();
-render(getMainElement, createFilterTemplate(filters));
+render(mainElement, createFilterTemplate(filters));
 
-render(getMainElement, createBoardTemplate());
+render(mainElement, createBoardTemplate());
 
-const getTaskListElement = document.querySelector(`.board__tasks`);
+const taskListElement = document.querySelector(`.board__tasks`);
 
 tasks.slice(0, START_SHOWING_TASKS).forEach((el, i) => {
-  return i > 0 ? render(getTaskListElement, createTaskTemplate(tasks[i])) : render(getTaskListElement, createFormEditTask(tasks.slice(0, 1)));
+  return i > 0 ? render(taskListElement, createTaskTemplate(tasks[i])) : render(taskListElement, createFormEditTask(tasks.slice(0, 1)));
 });
 
-const getBoardElement = getMainElement.querySelector(`.board`);
+const boardElement = mainElement.querySelector(`.board`);
 
 const getLoadMoreButton = () => {
-  return getBoardElement.querySelector(`.load-more`);
+  return boardElement.querySelector(`.load-more`);
 };
 
-render(getBoardElement, createLoadButton());
+render(boardElement, createLoadButton());
 
 getLoadMoreButton().addEventListener(`click`, () => {
   let currentTasks = START_SHOWING_TASKS;
   currentTasks = START_SHOWING_TASKS + BUTTON_SHOWING_TASKS;
 
-  tasks.slice(START_SHOWING_TASKS, currentTasks).forEach((el, i) => render(getTaskListElement, createTaskTemplate(tasks[i])));
+  tasks.slice(START_SHOWING_TASKS, currentTasks).forEach((el, i) => render(taskListElement, createTaskTemplate(tasks[i])));
 
   if (currentTasks >= tasks.length) {
     getLoadMoreButton().classList.add(`visually-hidden`);

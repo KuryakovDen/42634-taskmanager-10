@@ -1,6 +1,6 @@
-export const filterNames = [`all`, `overdue`, `today`, `favorites`, `repeating`, `archive`];
+const filterNames = [`all`, `overdue`, `today`, `favorites`, `repeating`, `archive`];
 
-export const generateFilters = () => {
+const generateFilters = () => {
   return filterNames.map((filterName) => {
     return {
       title: filterName,
@@ -8,3 +8,5 @@ export const generateFilters = () => {
     };
   });
 };
+
+export {filterNames, generateFilters};

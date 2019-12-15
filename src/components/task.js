@@ -1,4 +1,4 @@
-import {convertTimeFormat} from '../util.js';
+import {convertTimeFormat} from '../utils.js';
 import {monthDays} from '../const.js';
 
 const createHashtagsMarkup = (hashtags) => {
@@ -13,7 +13,7 @@ const createHashtagsMarkup = (hashtags) => {
   }).join(`\n`);
 };
 
-export const createTaskTemplate = (task) => {
+const createTaskTemplate = (task) => {
   const {description, tags, dueDate, color} = task;
 
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
@@ -37,9 +37,7 @@ export const createTaskTemplate = (task) => {
             <button type="button" class="card__btn card__btn--archive">
               archive
             </button>
-            <button
-              type="button"
-              class="card__btn card__btn--favorites card__btn--disabled">
+            <button type="button" class="card__btn card__btn--favorites card__btn--disabled">
               favorites
             </button>
           </div>
@@ -73,3 +71,5 @@ export const createTaskTemplate = (task) => {
     </article>`
   );
 };
+
+export {createTaskTemplate};

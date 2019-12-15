@@ -1,5 +1,5 @@
 import {defaultRepeatingDays, descriptionTasks, tags, cardColors} from '../const.js';
-import {generateRandomElement, generateRandomRangeNumber} from '../util.js';
+import {generateRandomElement, generateRandomRangeNumber} from '../utils.js';
 
 const generateRepeatingDays = () => {
   return Object.assign({}, defaultRepeatingDays, {
@@ -22,7 +22,7 @@ const generateTags = (someTags) => {
   return someTags.filter(() => Math.random() > 0.5).slice(0, 3);
 };
 
-export const generateTask = () => {
+const generateTask = () => {
   const dueDate = Math.random > 0.5 ? null : generateRepeatingDays();
 
   return {
@@ -36,6 +36,8 @@ export const generateTask = () => {
   };
 };
 
-export const generateTasks = (tasksCount) => {
+const generateTasks = (tasksCount) => {
   return new Array(tasksCount).fill(``).map(generateTask);
 };
+
+export {generateTask, generateTasks};
