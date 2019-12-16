@@ -1,36 +1,49 @@
-import {TASK_COUNT, createTaskTemplate} from './components/task.js';
-import {createFormEditTask} from './components/task-edit.js';
+import {createFormEditTask, tasks} from './components/task-edit.js';
 import {createBoardTemplate} from './components/board.js';
-import {createFilterTemplate} from './components/filter.js';
 import {createLoadButton} from './components/load-button.js';
 import {createSiteMenuTemplate} from './components/menu.js';
+import {createFilterTemplate} from './components/filter.js';
+import {createTaskTemplate} from './components/task.js';
+import {generateFilters} from './mock/filter.js';
 
-const getMainElement = () => {
-  return document.querySelector(`.main`);
-};
+const START_SHOWING_TASKS = 8;
+const BUTTON_SHOWING_TASKS = 8;
 
-const getHeaderElement = () => {
-  return getMainElement().querySelector(`.main__control`);
-};
+const mainElement = document.querySelector(`.main`);
+
+const headerElement = mainElement.querySelector(`.main__control`);
 
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
-render(getHeaderElement(), createSiteMenuTemplate());
-render(getMainElement(), createFilterTemplate());
-render(getMainElement(), createBoardTemplate());
+render(headerElement, createSiteMenuTemplate());
 
-const getTaskListElement = () => {
-  return document.querySelector(`.board__tasks`);
+const filters = generateFilters();
+render(mainElement, createFilterTemplate(filters));
+
+render(mainElement, createBoardTemplate());
+
+const taskListElement = document.querySelector(`.board__tasks`);
+
+tasks.slice(0, START_SHOWING_TASKS).forEach((task, i) => {
+  return i ? render(taskListElement, createTaskTemplate(tasks[i])) : render(taskListElement, createFormEditTask(tasks.slice(0, 1)));
+});
+
+const boardElement = mainElement.querySelector(`.board`);
+
+const getLoadMoreButton = () => {
+  return boardElement.querySelector(`.load-more`);
 };
 
-render(getTaskListElement(), createFormEditTask());
+render(boardElement, createLoadButton());
 
-new Array(TASK_COUNT).fill(``).forEach(() => render(getTaskListElement(), createTaskTemplate()));
+getLoadMoreButton().addEventListener(`click`, () => {
+  let currentTasks = START_SHOWING_TASKS + BUTTON_SHOWING_TASKS;
 
-const getBoardElement = () => {
-  return getMainElement().querySelector(`.board`);
-};
+  tasks.slice(START_SHOWING_TASKS, currentTasks).forEach((task, i) => render(taskListElement, createTaskTemplate(tasks[i])));
 
-render(getBoardElement(), createLoadButton());
+  if (currentTasks >= tasks.length) {
+    getLoadMoreButton().classList.add(`visually-hidden`);
+  }
+});

@@ -1,4 +1,4 @@
-export const createSiteMenuTemplate = () => {
+const createSiteMenuTemplate = () => {
   return (
     `<section class="control__btn-wrap">
       <input type="radio" name="control" id="control__new-task" class="control__input visually-hidden" />
@@ -10,3 +10,5 @@ export const createSiteMenuTemplate = () => {
     </section>`
   );
 };
+
+export {createSiteMenuTemplate};
