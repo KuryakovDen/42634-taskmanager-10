@@ -8,7 +8,7 @@ const generateRepeatingDays = () => {
 };
 
 const generateRandomDate = () => {
-  let taskDate = new Date();
+  const taskDate = new Date();
 
   const sign = Math.random() > 0.5 ? 1 : -1;
   const differenceDate = sign * generateRandomRangeNumber(0, 7);
@@ -18,8 +18,8 @@ const generateRandomDate = () => {
   return taskDate;
 };
 
-const generateTags = (someTags) => {
-  return someTags.filter(() => Math.random() > 0.5).slice(0, 3);
+const generateTags = (hashtags) => {
+  return hashtags.filter(() => Math.random() > 0.5);
 };
 
 const generateTask = () => {

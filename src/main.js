@@ -26,8 +26,8 @@ render(mainElement, createBoardTemplate());
 
 const taskListElement = document.querySelector(`.board__tasks`);
 
-tasks.slice(0, START_SHOWING_TASKS).forEach((el, i) => {
-  return i > 0 ? render(taskListElement, createTaskTemplate(tasks[i])) : render(taskListElement, createFormEditTask(tasks.slice(0, 1)));
+tasks.slice(0, START_SHOWING_TASKS).forEach((task, i) => {
+  return i ? render(taskListElement, createTaskTemplate(tasks[i])) : render(taskListElement, createFormEditTask(tasks.slice(0, 1)));
 });
 
 const boardElement = mainElement.querySelector(`.board`);
@@ -41,7 +41,7 @@ render(boardElement, createLoadButton());
 getLoadMoreButton().addEventListener(`click`, () => {
   let currentTasks = START_SHOWING_TASKS + BUTTON_SHOWING_TASKS;
 
-  tasks.slice(START_SHOWING_TASKS, currentTasks).forEach((el, i) => render(taskListElement, createTaskTemplate(tasks[i])));
+  tasks.slice(START_SHOWING_TASKS, currentTasks).forEach((task, i) => render(taskListElement, createTaskTemplate(tasks[i])));
 
   if (currentTasks >= tasks.length) {
     getLoadMoreButton().classList.add(`visually-hidden`);

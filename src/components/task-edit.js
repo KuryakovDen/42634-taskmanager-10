@@ -25,11 +25,10 @@ const createColorMarkup = (colors, currentColor) => {
   }).join(`\n`);
 };
 
-const createHashtagsMarkup = (someTags) => {
+const createHashtagsMarkup = (hashtags) => {
+  hashtags = editTask[0].tags;
 
-  someTags = editTask[0].tags;
-
-  return Array.from(someTags).map((tag) => {
+  return Array.from(hashtags).map((tag) => {
     return (
       `<span class="card__hashtag-inner">
         <input type="hidden"
@@ -128,4 +127,4 @@ const createFormEditTask = (task) => {
   );
 };
 
-export {TASK_COUNT, tasks, createFormEditTask};
+export {tasks, createFormEditTask};

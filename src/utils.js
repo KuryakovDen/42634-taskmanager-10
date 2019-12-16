@@ -1,4 +1,4 @@
-const timeFormat = 10;
+const TIME_FORMAT = 10;
 
 const generateRandomElement = (elements) => {
   let index = Math.floor(Math.random() * elements.length);
@@ -10,7 +10,7 @@ const generateRandomRangeNumber = (min, max) => {
 };
 
 const convertTimeFormat = (value) => {
-  return value < timeFormat ? `0${value}` : String(value);
+  return value < TIME_FORMAT ? `0${value}` : String(value);
 };
 
 const convertDateFormat = (currentDate) => {
@@ -24,6 +24,5 @@ const convertDateFormat = (currentDate) => {
 };
 
 const getExpiredStatus = (dueDate) => dueDate instanceof Date && dueDate < Date.now();
-
 
 export {generateRandomElement, generateRandomRangeNumber, convertTimeFormat, convertDateFormat, getExpiredStatus};
