@@ -1,32 +1,40 @@
-import {convertTimeFormat, getExpiredStatus} from '../utils.js';
-import {monthDays} from '../const.js';
+import {MONTH_NAMES} from '../const.js';
+import {formatTime} from '../utils.js';
+
 
 const createHashtagsMarkup = (hashtags) => {
-  return Array.from(hashtags).map((hashtag) => {
-    return (
-      `<span class="card__hashtag-inner">
-        <span class="card__hashtag-name">
-          #${hashtag}
-        </span>
-      </span>`
-    );
-  }).join(`\n`);
+  return hashtags
+    .map((hashtag) => {
+      return (
+        `<span class="card__hashtag-inner">
+            <span class="card__hashtag-name">
+              #${hashtag}
+            </span>
+          </span>`
+      );
+    })
+    .join(`\n`);
 };
 
-const createTaskTemplate = (task) => {
-  const {description, tags, dueDate, color} = task;
 
+export const createTaskTemplate = (task) => {
+  // Подсказка:
+  // Все работу производим заранее. Внутри шаблонной строки никаких вычислений не делаем,
+  // потому что внутри большой разметки сложно искать какой-либо код.
+  const {description, tags, dueDate, color, repeatingDays} = task;
+
+  const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
 
-  const date = isDateShowing ? `${dueDate.getDate()} ${monthDays[dueDate.getMonth()]}` : ``;
-  const time = isDateShowing ? convertTimeFormat(dueDate) : ``;
+  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
+  const time = isDateShowing ? formatTime(dueDate) : ``;
 
-  const hashtags = createHashtagsMarkup(tags);
-
-  const deadlineClass = getExpiredStatus() ? `card--deadline` : ``;
+  const hashtags = createHashtagsMarkup(Array.from(tags));
+  const repeatClass = Object.values(repeatingDays).some(Boolean) ? `card--repeat` : ``;
+  const deadlineClass = isExpired ? `card--deadline` : ``;
 
   return (
-    `<article class="card card--${color} ${deadlineClass}">
+    `<article class="card card--${color} ${repeatClass} ${deadlineClass}">
       <div class="card__form">
         <div class="card__inner">
           <div class="card__control">
@@ -36,7 +44,10 @@ const createTaskTemplate = (task) => {
             <button type="button" class="card__btn card__btn--archive">
               archive
             </button>
-            <button type="button" class="card__btn card__btn--favorites card__btn--disabled">
+            <button
+              type="button"
+              class="card__btn card__btn--favorites card__btn--disabled"
+            >
               favorites
             </button>
           </div>
@@ -70,5 +81,3 @@ const createTaskTemplate = (task) => {
     </article>`
   );
 };
-
-export {createTaskTemplate};
