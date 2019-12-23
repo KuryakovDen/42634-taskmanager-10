@@ -17,8 +17,10 @@ export default class LoadMoreButton {
 
   getElement() {
     if (!this._element) {
-      this._element = createElement(createLoadMoreButtonTemplate());
+      this._element = createElement(this.getTemplate());
     }
+
+    return this._element;
   }
 
   removeElement() {
