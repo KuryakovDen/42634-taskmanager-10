@@ -15,9 +15,9 @@ const createColorsMarkup = (colors, currentColor) => {
         />
         <label
           for="color-${color}-4"
-          class="card__color card__color--${color}"
-          >${color}</label
-        >`
+          class="card__color card__color--${color}">
+          ${color}
+        </label>`
       );
     })
     .join(`\n`);
@@ -36,9 +36,9 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
           value="${day}"
           ${isChecked ? `checked` : ``}
         />
-        <label class="card__repeat-day" for="repeat-${day}-4"
-          >${day}</label
-        >`
+        <label class="card__repeat-day" for="repeat-${day}-4">
+          ${day}
+        </label>`
       );
     })
     .join(`\n`);
@@ -58,10 +58,7 @@ const createHashtags = (tags) => {
           <p class="card__hashtag-name">
             #${tag}
           </p>
-          <button
-              type="button"
-              class="card__hashtag-delete"
-          >
+          <button type="button" class="card__hashtag-delete">
             delete
           </button>
         </span>`
@@ -170,7 +167,7 @@ const createTaskEditTemplate = (task) => {
   );
 };
 
-export default class TaskEdit {
+export default class TaskEditComponent {
   constructor(task) {
     this._task = task;
     this._element = null;
