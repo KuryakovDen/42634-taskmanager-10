@@ -1,13 +1,14 @@
-const filterNames = [`all`, `overdue`, `today`, `favorites`, `repeating`, `archive`];
-const MAX_RANDOM_COUNT_FILTERS = 10;
+const filterNames = [
+  `all`, `overdue`, `today`, `favorites`, `repeating`, `tags`, `archive`
+];
 
 const generateFilters = () => {
-  return filterNames.map((filterName) => {
+  return filterNames.map((it) => {
     return {
-      title: filterName,
-      count: Math.floor(Math.random() * MAX_RANDOM_COUNT_FILTERS)
+      name: it,
+      count: Math.floor(Math.random() * 10),
     };
   });
 };
 
-export {filterNames, generateFilters};
+export {generateFilters};

@@ -1,8 +1,8 @@
-export const descriptionTasks = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
-export const tags = [`homework`, `theory`, `practice`, `intensive`, `keks`];
-export const cardColors = [`black`, `yellow`, `pink`, `blue`, `green`];
+const COLORS = [`black`, `yellow`, `blue`, `green`, `pink`];
 
-export const monthDays = [
+const DAYS = [`mo`, `tu`, `we`, `th`, `fr`, `sa`, `su`];
+
+const MONTH_NAMES = [
   `January`,
   `February`,
   `March`,
@@ -14,15 +14,7 @@ export const monthDays = [
   `September`,
   `October`,
   `November`,
-  `December`
+  `December`,
 ];
 
-export const defaultRepeatingDays = {
-  'mo': false,
-  'tu': false,
-  'we': false,
-  'th': false,
-  'fr': false,
-  'sa': false,
-  'su': false
-};
+export {COLORS, DAYS, MONTH_NAMES};
