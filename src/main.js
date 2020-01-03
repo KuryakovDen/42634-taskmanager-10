@@ -5,7 +5,6 @@ import TaskEditComponent from './components/task-edit.js';
 import TaskComponent from './components/task.js';
 import SiteMenuComponent from './components/site-menu.js';
 import Tasks from './components/tasks.js';
-import Sort from './components/sorting';
 import NoTasks from './components/no-tasks.js';
 import {generateTasks} from './mock/task.js';
 import {generateFilters} from './mock/filter.js';
@@ -66,7 +65,6 @@ const isAllTasksArchived = tasks.every((task) => task.isArchive);
 if (isAllTasksArchived) {
   render(boardComponent.getElement(), new NoTasks().getElement(), RenderPosition.BEFOREEND);
 } else {
-  render(boardComponent.getElement(), new Sort().getElement(), RenderPosition.BEFOREEND);
   render(boardComponent.getElement(), new Tasks().getElement(), RenderPosition.BEFOREEND);
 
   const taskListElement = boardComponent.getElement().querySelector(`.board__tasks`);
