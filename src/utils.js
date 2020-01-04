@@ -1,4 +1,4 @@
-export const RenderPosition = {
+const RenderPosition = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`
 };
@@ -7,7 +7,7 @@ const castTimeFormat = (value) => {
   return value < 10 ? `0${value}` : String(value);
 };
 
-export const formatTime = (date) => {
+const formatTime = (date) => {
   const hours = castTimeFormat(date.getHours() % 12);
   const minutes = castTimeFormat(date.getMinutes());
 
@@ -16,14 +16,14 @@ export const formatTime = (date) => {
   return `${hours}:${minutes} ${interval}`;
 };
 
-export const createElement = (template) => {
+const createElement = (template) => {
   const newElement = document.createElement(`div`);
   newElement.innerHTML = template;
 
   return newElement.firstChild;
 };
 
-export const render = (container, element, place) => {
+const render = (container, element, place) => {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
       container.prepend(element);
@@ -32,4 +32,31 @@ export const render = (container, element, place) => {
       container.append(element);
       break;
   }
+};
+
+const remove = (component) => {
+  component.getElement().remove();
+  component.removeElement();
+};
+
+const replace = (oldComponent, newComponent) => {
+  const parentElement = oldComponent.getElement().parentElement;
+  const oldElement = oldComponent.getElement();
+  const newElement = newComponent.getElement();
+
+  const isExistElements = !!(parentElement && oldElement && newElement);
+
+  if (isExistElements && parentElement.contains(oldElement)) {
+    parentElement.replaceChild(newElement, oldElement);
+  }
+};
+
+export {
+  RenderPosition,
+  castTimeFormat,
+  formatTime,
+  createElement,
+  render,
+  remove,
+  replace
 };
