@@ -8,7 +8,7 @@ import Tasks from './components/tasks.js';
 import NoTasks from './components/no-tasks.js';
 import {generateTasks} from './mock/task.js';
 import {generateFilters} from './mock/filter.js';
-import {RenderPosition, render} from './utils.js';
+import {RenderPosition, render, remove, replace} from './utils.js';
 
 const TASK_COUNT = 22;
 const SHOWING_TASKS_COUNT_ON_START = 8;
@@ -25,11 +25,11 @@ const renderTask = (taskListElement, task) => {
   };
 
   const replaceEditToTask = () => {
-    taskListElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
+    replace(taskEditComponent, taskComponent);
   };
 
   const replaceTaskToEdit = () => {
-    taskListElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
+    replace(taskComponent, taskEditComponent);
   };
 
   const taskComponent = new TaskComponent(task);
@@ -45,27 +45,27 @@ const renderTask = (taskListElement, task) => {
 
   editForm.addEventListener(`submit`, replaceEditToTask);
 
-  render(taskListElement, taskComponent.getElement(), RenderPosition.BEFOREEND);
+  render(taskListElement, taskComponent, RenderPosition.BEFOREEND);
 };
 
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
-render(siteHeaderElement, new SiteMenuComponent().getElement(), RenderPosition.BEFOREEND);
+render(siteHeaderElement, new SiteMenuComponent(), RenderPosition.BEFOREEND);
 
 const filters = generateFilters();
-render(siteMainElement, new FilterComponent(filters).getElement(), RenderPosition.BEFOREEND);
+render(siteMainElement, new FilterComponent(filters), RenderPosition.BEFOREEND);
 
 const boardComponent = new BoardComponent();
-render(siteMainElement, boardComponent.getElement(), RenderPosition.BEFOREEND);
+render(siteMainElement, boardComponent, RenderPosition.BEFOREEND);
 
 const tasks = generateTasks(TASK_COUNT);
 const isAllTasksArchived = tasks.every((task) => task.isArchive);
 
 if (isAllTasksArchived) {
-  render(boardComponent.getElement(), new NoTasks().getElement(), RenderPosition.BEFOREEND);
+  render(boardComponent.getElement(), new NoTasks(), RenderPosition.BEFOREEND);
 } else {
-  render(boardComponent.getElement(), new Tasks().getElement(), RenderPosition.BEFOREEND);
+  render(boardComponent.getElement(), new Tasks(), RenderPosition.BEFOREEND);
 
   const taskListElement = boardComponent.getElement().querySelector(`.board__tasks`);
 
@@ -76,7 +76,7 @@ if (isAllTasksArchived) {
     });
 
   const loadMoreButtonComponent = new LoadMoreButtonComponent();
-  render(boardComponent.getElement(), loadMoreButtonComponent.getElement(), RenderPosition.BEFOREEND);
+  render(boardComponent.getElement(), loadMoreButtonComponent, RenderPosition.BEFOREEND);
 
   loadMoreButtonComponent.getElement().addEventListener(`click`, () => {
     const prevTasksCount = showingTasksCount;
@@ -86,8 +86,7 @@ if (isAllTasksArchived) {
       .forEach((task) => renderTask(taskListElement, task));
 
     if (showingTasksCount >= tasks.length) {
-      loadMoreButtonComponent.getElement().remove();
-      loadMoreButtonComponent.removeElement();
+      remove(loadMoreButtonComponent);
     }
   });
 }
