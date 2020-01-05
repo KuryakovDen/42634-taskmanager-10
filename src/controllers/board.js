@@ -36,7 +36,6 @@ const renderTask = (taskListElement, task) => {
   });
 
   const taskEditComponent = new TaskEditComponent(task);
-
   taskEditComponent.setSubmitHandler(replaceEditToTask);
 
   render(taskListElement, taskComponent, RenderPosition.BEFOREEND);
