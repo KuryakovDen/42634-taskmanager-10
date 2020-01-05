@@ -17,4 +17,10 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-export {COLORS, DAYS, MONTH_NAMES};
+const SortType = {
+  DEFAULT: `default`,
+  DATE_UP: `up`,
+  DATE_DOWN: `down`
+};
+
+export {COLORS, DAYS, MONTH_NAMES, SortType};
